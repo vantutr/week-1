@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chu vi - diện tích hình tròn</title>
+</head>
+<body>
+<h4>Viết chương trình tính chu vi, diện tích hình tròn</h4>
+<input type="number" id="ban_kinh" placeholder="Nhập bán kính hình tròn">
+<input type="submit" onclick="tinhdientich()" value="Nhập">
+<p id="dientich"></p>
+<p id="chuvi"></p>
+</body>
+</html>
+<script>
+    function tinhdientich() {
+        bankinh = document.getElementById("ban_kinh").value;
+
+        let r = parseInt(bankinh);
+        let S = 3.14 * r * r;
+        let Snew = S.toFixed(2);
+        let C = 2 * 3.14 * r;
+        let Cnew = C.toFixed(2);
+        document.getElementById("dientich").innerHTML = ('Diện tích của hình tròn = ' + Snew);
+        document.getElementById("chuvi").innerHTML = ('Chu vi của hình tròn = ' + Cnew);
+    }
+</script>
