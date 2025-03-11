@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Ứng dụng máy tính</title>
+</head>
+<body>
+    <input type="number" id="sothunhat" placeholder="nhập số thứ nhất">
+    <input type="number" id="sothuhai" placeholder="nhập số thứ hai">
+    <br> <br>
+    <input type="submit" onclick="phepcong()" value="Phép cộng (+)">
+    <input type="submit" onclick="pheptru()" value="Phép trừ (-)">
+    <input type="submit" onclick="phepnhan()" value="Phép nhân (*)">
+    <input type="submit" onclick="phepchia()" value="Phép chia (/)">
+    <p id="result">Result: </p>
+</body>
+</html>
+<script>
+    function phepcong(){
+        number1 = document.getElementById("sothunhat").value;
+        number2 = document.getElementById("sothuhai").value;
+        let a = parseInt(number1);
+        let b = parseInt(number2);
+        let tong = a + b;
+        document.getElementById("result").innerHTML = ('Tổng = ' + tong);
+    }
+    function pheptru(){
+        number1 = document.getElementById("sothunhat").value;
+        number2 = document.getElementById("sothuhai").value;
+        let a = parseInt(number1);
+        let b = parseInt(number2);
+        let hieu = a - b;
+        document.getElementById("result").innerHTML = ('Hiệu = ' + hieu);
+    }
+    function phepnhan(){
+        number1 = document.getElementById("sothunhat").value;
+        number2 = document.getElementById("sothuhai").value;
+        let a = parseInt(number1);
+        let b = parseInt(number2);
+        let tich = a * b;
+        document.getElementById("result").innerHTML = ('Tích = ' + tich);
+    }
+    function phepchia(){
+        number1 = document.getElementById("sothunhat").value;
+        number2 = document.getElementById("sothuhai").value;
+        let a = parseInt(number1);
+        let b = parseInt(number2);
+        let thuong = a / b;
+        document.getElementById("result").innerHTML = ('Thương = ' + thuong);
+    }
+</script>
