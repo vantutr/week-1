@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Body Mass Index - BMI</title>
+</head>
+<body>
+    <h2>Tính chỉ số cân nặng</h2>
+    <label for="weight">Nhập cân nặng: (kg)</label>
+    <input type="number" id="weight"> <br><br>
+    <label for="height">Nhập chiều cao: (kg)</label>
+    <input type="number" id="height"> <br><br>
+    <input type="submit" value="Kiểm tra" onclick="myFunction()">
+    <p id="result"></p>
+</body>
+</html>
+<script>
+    function myFunction() {
+        cannang = parseFloat(document.getElementById("weight").value);
+        chieucao = parseFloat(document.getElementById("height").value);
+        let BMI = cannang / (chieucao * chieucao);
+        if (BMI < 18.5) {
+            document.getElementById('result').innerHTML = ('Chỉ số BMI là: ' + BMI + '. Bạn <b>thiếu cân');
+        }
+        else if (BMI < 25.0) {
+            document.getElementById('result').innerHTML = ('Chỉ số BMI là: ' + BMI + '. Bạn <b>bình thường');
+        } else if (BMI < 30.0) {
+            document.getElementById('result').innerHTML = ('Chỉ số BMI là: ' + BMI + '. Bạn <b>thừa cân');
+        }else {
+            document.getElementById('result').innerHTML = ('Chỉ số BMI là: ' + BMI + '. Bạn <b>béo phì');
+        }
+    }
+</script>

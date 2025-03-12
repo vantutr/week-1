@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="number" id="number1" placeholder="Nhập số thư nhất">
+  <input type="number" id="number2" placeholder="Nhập số thư hai">
+  <input type="number" id="number3" placeholder="Nhập số thư ba">
+  <input type="submit" onclick="timmax()" value="Kiểm tra">
+  <p id="result"></p>
+</body>
+</html>
+<script type="text/javascript">
+  function timmax(){
+    let a = parseInt(document.getElementById("number1").value);
+    let b = parseInt(document.getElementById("number2").value);
+    let c = parseInt(document.getElementById("number3").value);
+
+    if(a > b && a > c){
+      document.getElementById("result").innerHTML = 'Giá trị lớn nhất là: ' + a;
+      } else if(b > a && b > c){
+      document.getElementById("result").innerHTML = 'Giá trị lớn nhất là: ' + b;
+    } else {
+      document.getElementById("result").innerHTML = 'Giá trị lớn nhất là: ' + c;
+    }
+  }
+</script>

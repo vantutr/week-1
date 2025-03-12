@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="number" id="money" placeholder="Nhập doanh thu (VNĐ)">
+  <input type="submit" onclick="tinhhoahong()" value="Tính">
+  <p id="result"></p>
+</body>
+</html>
+<script>
+  function tinhhoahong(){
+    money =parseFloat(document.getElementById("money").value);
+
+    if(money < 10000000){
+      money *= 5 / 100;
+      document.getElementById("result").innerHTML = 'Hoa hồng của bạn là:' + money;
+    }else if(money < 50000000){
+      money *= 7 / 100;
+      document.getElementById("result").innerHTML = 'Hoa hồng của bạn là:' + money;
+    }else if(money < 100000000){
+      money *= 10 / 100;
+      document.getElementById("result").innerHTML = 'Hoa hồng của bạn là:' + money;
+    }else{
+      money *= 15 / 100;
+      document.getElementById("result").innerHTML = 'Hoa hồng của bạn là:' + money;
+    }
+  }
+</script>

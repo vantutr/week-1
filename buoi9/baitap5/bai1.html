@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="number" id="sobichia" placeholder="Nhập số bị chia">
+    <input  type="number" id="sochia" placeholder="Nhập số chia">
+    <input type="submit" onclick="myFunction()" value="Kiểm tra">
+    <p id="kq"></p>
+</body>
+</html>
+<script type="text/javascript">
+    function myFunction() {
+        let a = parseInt(document.getElementById("sobichia").value);
+        let b = parseInt(document.getElementById("sochia").value);
+        if(a % b == 0) {
+            document.getElementById("kq").innerHTML = (a + ' chia hết cho ' + b);
+        } else
+            document.getElementById("kq").innerHTML = (a + ' không chia hết cho ' + b);
+    }
+</script>

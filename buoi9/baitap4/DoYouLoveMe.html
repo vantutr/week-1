@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+      body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #e16a6a;
+      }
+
+      .giaodien {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 350px;
+      }
+      .giaodien img{
+        width: 40%;
+      }
+      .giaodien{
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+      }
+      .giaodien input{
+        margin: 10px;
+        padding: 10px 25px;
+        background: #ffa6a6;
+        border: none;
+        border-radius: 15px;
+      }
+      #btnNo {
+        position: absolute;
+      }
+    </style>
+</head>
+<body>
+  <div class="giaodien">
+    <img src="https://media0.giphy.com/media/KztT2c4u8mYYUiMKdJ/giphy.gif?cid=6c09b952kafsgwjvutxjqqww100gyp8jk764ajfbg4br664y&ep=v1_gifs_search&rid=giphy.gif&ct=g">
+    <h1>Do you love me?</h1>
+    <input type="button" value="YES" onclick="yesClick()"/>
+    <input type="button" id="btnNo" value="NO" onmouseover="noHover()"/>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+  function yesClick() {
+    alert("Anh Đùa Đấy");
+  }
+  function noHover() {
+    let x = Math.round(Math.random() * window.innerWidth);
+    let y = Math.round(Math.random() * window.innerHeight);
+    document.getElementById('btnNo').style.left = x + 'px';
+    document.getElementById('btnNo').style.top = y + 'px';
+  }
+
+</script>

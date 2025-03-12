@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính số ngày trong tháng</title>
+</head>
+<body>
+    <h2>Tính số ngày</h2>
+    <input type="number" id="thang" placeholder="Nhập 1 tháng bất kỳ">
+    <input type="submit" onclick="myFunction()" value="Tính số ngày">
+    <p id="result"></p>
+</body>
+</html>
+<script>
+    function myFunction() {
+        thang =  parseInt(document.getElementById("thang").value);
+        switch (thang) {
+            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+                document.getElementById('result').innerHTML = 'Tháng ' + thang + ' có 31 ngày';
+                break;
+            case 2:
+                document.getElementById('result').innerHTML = 'Tháng ' + thang + ' có 28 hoặc 29 ngày';
+                break;
+            case 4: case 6: case 9: case 11:
+                document.getElementById('result').innerHTML = 'Tháng ' + thang + ' có 30 ngày';
+                break;
+        }
+
+    }
+</script>

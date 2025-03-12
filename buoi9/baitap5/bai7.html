@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="number" id="phicodinh" placeholder="Nhập phí thuê bao cố định">
+  <input type="number" id="goinoimang" placeholder="Nhập số phút gọi nội mạng">
+  <input type="number" id="goingoaimang" placeholder="Nhập số phút gọi ngoại mạng">
+  <input type="submit" onclick="cuocdienthoai()" value="Tính">
+  <p id="result"></p>
+</body>
+</html>
+<script>
+  function cuocdienthoai(){
+    let phicodinh = parseFloat(document.getElementById("phicodinh").value);
+    let cuocnoimang = parseFloat(document.getElementById("goinoimang").value);
+    let cuocngoaimang = parseFloat(document.getElementById("goingoaimang").value);
+
+    let tongcuoc = phicodinh + cuocnoimang * 1000 + cuocngoaimang * 1500;
+    if(phicodinh > 0 && cuocngoaimang > 0 && cuocngoaimang > 0){
+      document.getElementById('result').innerHTML = 'Tổng cước là :' + tongcuoc;
+    } else {
+      document.getElementById('result').innerHTML = 'Số bạn nhập không hợp lệ';
+    }
+  }
+</script>

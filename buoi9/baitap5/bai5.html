@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="number" id="diemkiemtra" placeholder="Nhập điểm kiểm tra">
+    <input type="number" id="diemgiuaky" placeholder="Nhập điển giữa kỳ">
+    <input type="number" id="diemcuoiky" placeholder="Nhập điểm cuối kỳ">
+    <input type="submit" onclick="xeploaihocluc()" value="Kiểm tra">
+    <p id="result"></p>
+</body>
+</html>
+<script type="text/javascript">
+    function xeploaihocluc(){
+        let a = parseFloat(document.getElementById("diemkiemtra").value);
+        let b = parseFloat(document.getElementById("diemgiuaky").value);
+        let c = parseFloat(document.getElementById("diemcuoiky").value);
+
+        let dtb = a * 0.3 + b * 0.3 + c * 0.4;
+        if(dtb >= 8.0){
+            document.getElementById('result').innerHTML = 'Điểm của bạn là: ' + dtb + ' xếp loại <b>giỏi';
+        } else if(dtb >= 7.0){
+            document.getElementById('result').innerHTML = 'Điểm của bạn là: ' + dtb + ' xếp loại <b>khá';
+        } else if(dtb >= 5.0){
+            document.getElementById('result').innerHTML = 'Điểm của bạn là: ' + dtb + ' xếp loại <b>trung bình';
+        } else{
+            document.getElementById('result').innerHTML = 'Điểm của bạn là: ' + dtb + ' xếp loại <b>yếu';
+        }
+    }
+</script>

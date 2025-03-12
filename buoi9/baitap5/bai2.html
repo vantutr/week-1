@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input type="number" id="tuoi" placeholder="Nhập tuổi của bạn">
+  <input type="submit" onclick="kiemtratuoi()" value="Kiểm tra">
+  <p id="result"></p>
+</body>
+</html>
+<script type="text/javascript">
+  function kiemtratuoi() {
+    let tuoi = document.getElementById("tuoi").value;
+    if (tuoi <= 17 && tuoi >=15)  {
+      document.getElementById('result').innerHTML = 'Bạn đủ điều kiện vào lớp 10'
+    } else {
+      document.getElementById('result').innerHTML = 'Bạn không điều kiện vào lớp 10'
+    }
+  }
+</script>
