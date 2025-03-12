@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Luyện tập với cấu trúc if/else</title>
+</head>
+<body>
+<p style="font-weight: bold">What is the “official” name of JavaScript?</p>
+<input type="text" id="nhap" placeholder="Nhập câu trả lời">
+<input type="submit" onclick="answer()" value="Trả lời">
+<p id="result"></p>
+</body>
+</html>
+<script>
+  function answer() {
+    dapan = document.getElementById('nhap').value;
+    if (dapan == "ECMAScript") {
+      document.getElementById('result').innerHTML = "Đáp án đúng";
+    } else {
+      document.getElementById('result').innerHTML = "Đáp án sai";
+    }
+  }
+</script>

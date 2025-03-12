@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm tra năm nhuận</title>
+</head>
+<body>
+    <input type="number" id="nhapnam" placeholder="Nhập năm bạn muốn kiểm tra">
+    <input type="submit" onclick="kiemtranamnhuan()" value="Kiểm tra">
+    <p id="result"></p>
+</body>
+</html>
+<script>
+    function kiemtranamnhuan() {
+        nam = parseInt(document.getElementById("nhapnam").value);
+        if (nam % 4 == 0 && nam % 100 != 0) {
+            document.getElementById("result").innerHTML = (nam + ' là năm nhuận');
+        } else if (nam % 100 == 0 && nam % 400 == 0) {
+            document.getElementById("result").innerHTML = (nam + ' là năm nhuận');
+        }
+        else {
+            document.getElementById("result").innerHTML = (nam + ' không phải là năm nhuận');
+        }
+    }
+</script>

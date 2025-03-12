@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="nhap" placeholder="Nhập một chuôi">
+<input type="submit" onclick="myFunction()" value="Trả lời">
+<p id="result"></p>
+</body>
+</html>
+<script>
+  function myFunction(){
+    x = document.getElementById("nhap").value;
+    x == 'Employee' ? document.getElementById("result").innerHTML = 'Hello':
+            ( x == 'Director') ? document.getElementById("result").innerHTML = 'Greetings':
+                    ( x == null) ? document.getElementById("result").innerHTML = 'No login': document.getElementById("result").innerHTML = ''
+  }
+</script>
