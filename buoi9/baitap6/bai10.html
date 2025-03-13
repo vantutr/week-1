@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<input type="number" id="KWh" placeholder="Nhập mức tiêu thụ">
+<input type="submit" onclick="hienthi()" value="Kiểm tra">
+<p id="result"></p>
+<script>
+  function hienthi(){
+    kwh = document.getElementById('KWh').value;
+    let tongtien;
+    let result;
+    if (kwh >= 0) {
+      if (kwh < 50) {
+        tongtien = kwh * 1.728;
+        result = 'Tổng tiền điện là: ' + tongtien;
+      } else if (kwh < 100) {
+        tongtien = kwh * 1.786;
+        result = 'Tổng tiền điện là: ' + tongtien;
+      } else if (kwh < 200) {
+        tongtien = kwh * 2.074;
+        result = 'Tổng tiền điện là: ' + tongtien;
+      } else if (kwh < 300) {
+        tongtien = kwh * 2.612;
+        result = 'Tổng tiền điện là: ' + tongtien;
+      } else {
+        tongtien = kwh * 3.00;
+        result = 'Tổng tiền điện là: ' + tongtien;
+      }
+    } else {
+      result = 'Số điện nhập không hợp lệ';
+    }
+    document.getElementById('result').innerHTML = result;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<input type="number" id="canh1" placeholder="Nhập cạnh thứ nhất">
+<input type="number" id="canh2" placeholder="Nhập cạnh thứ hai">
+<input type="submit" onclick="hienthi()" value="Nhập">
+<p id="result"></p>
+<script>
+  function hienthi(){
+    a = parseFloat(document.getElementById('canh1').value);
+    b = parseFloat(document.getElementById('canh2').value);
+
+    if (a > 0.0 && b > 0.0) {
+      let dientich = 1 / 2 * a * b;
+      document.getElementById('result').innerHTML = ('Diện tích = ' + dientich);
+    } else {
+      document.getElementById('result').innerHTML = ('2 cạnh ca tam giác đều phải lớn hơn 0');
+    }
+  }
+</script>
+</body>
+</html>

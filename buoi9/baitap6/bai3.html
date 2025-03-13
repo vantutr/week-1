@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<input type="number" id="canh" placeholder="Nhập cạnh hình vuông">
+<input type="submit" onclick="hienthi()" value="Nhập">
+<p id="result"></p>
+<script>
+  function hienthi(){
+    a = parseFloat(document.getElementById('canh').value);
+
+    if (a > 0.0) {
+      let dientich = a * a;
+      document.getElementById('result').innerHTML = ('Diện tích = ' + dientich);
+    } else {
+      document.getElementById('result').innerHTML = ('Cạnh phải lớn hơn 0');
+    }
+  }
+</script>
+</body>
+</html>

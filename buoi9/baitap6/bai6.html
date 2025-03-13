@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="number" id="a" placeholder="a =">
+<input type="number" id="b" placeholder="b =">
+<input type="submit" onclick="hienthi()" value="Nhập">
+<p id="result"></p>
+<script>
+    function hienthi(){
+        a = parseFloat(document.getElementById('a').value);
+        b = parseFloat(document.getElementById('b').value);
+        let result;
+        if (a == 0.0) {
+            if(b == 0.0){
+                result = 'phương trình vô số nghiệm';
+            } else {
+                result = 'phương trình vô nghiệm';
+            }
+        } else {
+            result = -b / a;
+        }
+        document.getElementById('result').innerHTML = result;
+    }
+</script>
+</body>
+</html>

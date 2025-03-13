@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input type="number" id="money" placeholder="Nhập thu nhập (VNĐ)">
+<input type="submit" onclick="tinhthue()" value="Tính">
+<p id="result"></p>
+</body>
+</html>
+<script>
+  function tinhthue() {
+    money = +document.getElementById("money").value;
+    let result;
+    if (money > 0) {
+      if (money > 5000000) {
+        if (money < 10000000) {
+          money *= 10 / 100;
+          result = 'Thuế thu nhập của bạn là: ' + money;
+        } else if (money < 18000000) {
+          money *= 15 / 100;
+          result = 'Thuế thu nhập của bạn là: ' + money;
+        } else if (money < 32000000) {
+          money *= 20 / 100;
+          result = 'Thuế thu nhập của bạn là: ' + money;
+        } else if (money < 52000000) {
+          money *= 25 / 100;
+          result = 'Thuế thu nhập của bạn là: ' + money;
+        } else {
+          money *= 30 / 100;
+          result = 'Thuế thu nhập của bạn là: ' + money;
+        }
+      } else {
+        result = "Bạn không phải đóng thuế thu nhập cá nhân"
+      }
+    } else {
+      result = "Thu nhập không hợp lệ";
+    }
+    document.getElementById("result").innerHTML = result;
+  }
+</script>

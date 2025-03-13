@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="number" id="a" placeholder="a =">
+<input type="number" id="b" placeholder="b =">
+<input type="number" id="c" placeholder="c =">
+<input type="submit" onclick="hienthi()" value="Nhập">
+<p id="result"></p>
+<script>
+    function hienthi(){
+        a = +document.getElementById('a').value;
+        b = +document.getElementById('b').value;
+        c = +document.getElementById('c').value;
+        let result;
+        if ((a > 0 && b > 0 && c > 0) && (a + b > c) && (b + c > a) && (a + c > b)) {
+            result = 'Đây là 3 cạnh của 1 tam giác';
+        } else {
+            result = 'Đây không phải là 3 cạnh của 1 tam giác'
+        }
+        document.getElementById('result').innerHTML = result;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<input type="number" id="yearold" placeholder="Nhập tuổi">
+<input type="submit" onclick="hienthi()" value="Kiểm tra">
+<p id="result"></p>
+<script>
+  function hienthi(){
+    year = document.getElementById('yearold').value;
+    let result;
+    if (year < 120 && year > 0) {
+      result = 'Đây là tuổi hợp lệ'
+    } else {
+      result = ' Tuổi không hợp lệ'
+    }
+    document.getElementById('result').innerHTML = result;
+  }
+</script>
+</body>
+</html>

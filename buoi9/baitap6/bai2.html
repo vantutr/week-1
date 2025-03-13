@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bài 2</title>
+</head>
+<body>
+  <input type="number" id="met" placeholder="Nhập số mét(m)">
+  <input type="submit" onclick="hienthi()" value="Nhập">
+  <p id="result"></p>
+<script>
+  function hienthi(){
+    m = parseFloat(document.getElementById('met').value);
+
+    if (m > 0.0) {
+      let ft = m * 3.2808;
+      document.getElementById('result').innerHTML = ('Feet(ft)= ' + ft);
+    } else {
+      document.getElementById('result').innerHTML = ('Số m phải lớn hơn 0');
+    }
+  }
+</script>
+</body>
+</html>

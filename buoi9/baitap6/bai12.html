@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<input type="number" id="firstmoney" placeholder="Nhập số tiền ban đầu">
+<input type="number" id="month" placeholder="Số tháng cho vay =">
+<input type="number" id="laisuat" placeholder="Lãi suất hàng tháng=">
+<input type="submit" onclick="hienthi()" value="Nhập">
+<p id="result"></p>
+<script>
+  function hienthi(){
+    tiengoc = +document.getElementById('firstmoney').value;
+    sothang = +document.getElementById('month').value;
+    laisuat = +document.getElementById('laisuat').value;
+    let result;
+    let lai = tiengoc * (1 + laisuat)**sothang;
+    if (tiengoc > 0 && sothang > 0){
+      result = "Số tiền cuối kỳ là: " + lai.toFixed(2);
+    }else {
+      result = "Số nhập không hợp lệ"
+    }
+    document.getElementById('result').innerHTML = result;
+  }
+</script>
+</body>
+</html>

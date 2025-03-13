@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <input type="number" id="chieurong" placeholder="Nhập chiều rộng">
+  <input type="number" id="chieucao" placeholder="Nhập chiều cao">
+  <input type="submit" onclick="hienthi()" value="Nhập">
+  <p id="result"></p>
+<script>
+  function hienthi(){
+    a = parseFloat(document.getElementById('chieurong').value);
+    b = parseFloat(document.getElementById('chieucao').value);
+
+    if (a > 0.0 && b > 0.0) {
+      let dientich = a * b;
+      document.getElementById('result').innerHTML = ('Diện tích = ' + dientich);
+    } else {
+      document.getElementById('result').innerHTML = ('Chiều dài và chiều rộng phải lớn hơn 0');
+    }
+  }
+</script>
+</body>
+</html>
