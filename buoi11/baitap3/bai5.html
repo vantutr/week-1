@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  function tongFibonaci(number) {
+    let a = 0;
+    let b = 1;
+    let temp;
+    let tong = 0;
+    for (let i = 0; i < number; i++) {
+      tong += a;
+      temp = a + b;
+      a = b;
+      b = temp;
+
+    }
+    document.write('Tổng của 20 số đầu tiên trong dãy fibonacci là: ' + tong);
+  }
+  tongFibonaci(20);
+</script>

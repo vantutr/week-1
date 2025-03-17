@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: lightblue;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*margin: 0;*/
+        }
+        input{
+            padding: 50px 80px;
+            font-size: 50px;
+            font-weight: bold;
+            border-radius: 20px;
+            border: none;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        input:hover{
+            background-color: #ff3b78;
+        }
+        input:active{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+  <input type="submit" onclick="gamedoanchu()" value="Bắt Đầu">
+</body>
+</html>
+<script>
+    function gamedoanchu() {
+        let max = parseInt(prompt("Số bạn muốn đoán trong khoảng lớn nhất là bao nhiêu?"));
+        // let soduocchon = Math.floor(Math.random() * (max - 1 + 1)) + 1;
+        let soduocchon = Math.floor(Math.random() * max) + 1;
+        for (let i = 1; i <= 3; i++) {
+            let nhapvao = parseInt(prompt('Nhập kết quả dự đoán'));
+            if(nhapvao < soduocchon){
+                alert('Số bạn đoán đang bé hơn! Hãy thử lại')
+            } else if (nhapvao > soduocchon){
+                alert('Số bạn đoán đang lớn hơn! Hãy thử lại')
+            }
+            else {
+                alert("Bạn đã đoán chính xác");
+                break;
+            }
+            if (i == 3)
+            alert("Bạn đã hết lượt đoán");
+        }
+    }
+</script>

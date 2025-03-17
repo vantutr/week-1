@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    // function intamgiacvuong(n) {
+    //     let output = "";
+    //
+    //     // Góc vuông ở dưới bên trái
+    //     for (let i = 1; i <= n; i++) {
+    //         output += "*".repeat(i) + "<br>";
+    //     }
+    //     output += "<br>";
+    //
+    //     // Góc vuông ở trên bên trái
+    //     for (let i = n; i >= 1; i--) {
+    //         output += "*".repeat(i) + "<br>";
+    //     }
+    //     output += "<br>";
+    //
+    //     // Góc vuông ở dưới bên phải
+    //     for (let i = 1; i <= n; i++) {
+    //         output += "&nbsp;".repeat(2 * (n - i)) + "*".repeat(i) + "<br>";
+    //     }
+    //     output += "<br>";
+    //
+    //     // Góc vuông ở trên bên phải
+    //     for (let i = n; i >= 1; i--) {
+    //         output += "&nbsp;".repeat(2 * (n - i)) + "*".repeat(i) + "<br>";
+    //     }
+    //
+    //     document.write(output);
+    // }
+    //
+    // intamgiacvuong(5);
+
+
+    let kq = "";
+
+    // cách khác
+    // for (let i = 1; i <= 5; i++) {
+    //     let row = "";
+    //     for (let j = 1; j <= i; j++) {
+    //         row += "*";
+    //     }
+    //     kq += row + "<br>";
+    // }
+
+    for (let i = 1; i <= n; i++) {
+        kq += "*".repeat(i) + "<br>";
+    }
+    kq += "<br>";
+
+
+    // for (let i = 5; i >= 1; i--) {
+    //     let row = "";
+    //     for (let j = 1; j <= i; j++) {
+    //         row += "*";
+    //     }
+    //     kq += row + "<br>";
+    // }
+    for (let i = n; i >= 1; i--) {
+        kq += "*".repeat(i) + "<br>";
+    }
+    kq += "<br>";
+
+    for (let i = 1; i <= 5; i++) {
+        kq += "&nbsp;".repeat(2 * (5 - i)) + "*".repeat(i) + "<br>";
+    }
+    kq += "<br>";
+
+    for (let i = 5; i >= 1; i--) {
+        kq += "&nbsp;".repeat(2 * (5 - i)) + "*".repeat(i) + "<br>";
+    }
+    document.write(kq);
+</script>

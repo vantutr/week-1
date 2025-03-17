@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript">
+  let nhietdo = parseInt(prompt("Nhập nhiệt độ hiện tại:"));
+
+  while (nhietdo < 20 || nhietdo > 100) {
+    if (nhietdo < 20) {
+      alert("Bạn cần tăng nhiện độ lên");
+      break;
+    } else {
+      alert("Bạn cần giảm nhiệt độ xuống");
+      break;
+    }
+  }
+</script>

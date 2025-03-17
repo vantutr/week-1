@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h4>Tính tổng của 30 số chia hết cho 7 đầu tiên trong các số tự nhiên.</h4>
+</body>
+</html>
+<script>
+    function output(number) {
+        let tong = 0;
+        for (let i = 1; i <= number; i++) {
+            tong += i * 7;
+            }
+        document.write('Tổng 30 số đầu tiên chia hết cho 7 là: ' + tong);
+    }
+    output(30)
+</script>
