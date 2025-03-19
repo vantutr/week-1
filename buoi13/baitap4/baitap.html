@@ -8,21 +8,26 @@
             text-align: center;
             justify-content: center;
         }
-        input {
-            width: 300px;
-            padding: 10px;
-        }
     </style>
 </head>
 <body>
     <h1>Thử gõ vào ô bên dưới</h1>
-    <input type="text" id="textInput" onkeydown="typeTextarea();" readonly >
+    <textarea id="textInput" cols="40" rows="10" onkeydown="typeTextarea();"></textarea>
 </body>
 </html>
 <script>
-    const x = "Tôi tên là Tú";
-    let n = 0;
-    if (n < x,length) {
+    let x = "Tôi tên là Tú";
+    let y = x.split("");
+    let index = 0;
 
+    function typeTextarea() {
+        let result = document.getElementById("textInput");
+        result.value = y.slice(0, index + 1).join(""); // Cập nhật nội dung textarea
+        if (index < y.length) {
+            index++; // Tăng vị trí lên để nhập ký tự tiếp theo,
+        }else {
+            result.value = "";
+            index = 0;
+        }
     }
 </script>
