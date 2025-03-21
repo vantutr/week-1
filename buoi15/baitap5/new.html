@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sản Phẩm</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        .btn { padding: 5px 10px; color: white; border: none; cursor: pointer; }
+        .edit { background-color: green; }
+        .delete { background-color: red; }
+    </style>
+</head>
+<body>
+<h2>Thêm Sản Phẩm</h2>
+<input type="text" id="newProduct" placeholder="Nhập tên sản phẩm">
+<button onclick="addProduct()">Thêm</button>
+
+<h2>Danh Sách Sản Phẩm</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Tên Sản Phẩm</th>
+        <th>Sửa</th>
+        <th>Xóa</th>
+    </tr>
+    </thead>
+    <tbody id="productList">
+    <tr>
+        <td>Sony Xperia</td>
+        <td><button class="btn edit" onclick="editProduct(this)">Sửa</button></td>
+        <td><button class="btn delete" onclick="deleteProduct(this)">Xóa</button></td>
+    </tr>
+    <tr>
+        <td>Samsung Galaxy</td>
+        <td><button class="btn edit" onclick="editProduct(this)">Sửa</button></td>
+        <td><button class="btn delete" onclick="deleteProduct(this)">Xóa</button></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    let products = ["Sony Xperia", "Samsung Galaxy"]; // Khởi tạo danh sách sản phẩm
+
+    function displayProducts() {
+        let table = document.getElementById("productList");
+        table.innerHTML = ""; // Xóa danh sách cũ
+        products.forEach((product, index) => {
+            table.innerHTML += `
+            <tr>
+                <td>${product}</td>
+                <td><button class="btn edit" onclick="editProduct(${index})">Sửa</button></td>
+                <td><button class="btn delete" onclick="deleteProduct(${index})">Xóa</button></td>
+            </tr>
+        `;
+        });
+    }
+
+    function addProduct() {
+        let input = document.getElementById("newProduct");
+        let name = input.value.trim();
+        if (name === "") return;
+
+        products.push(name); // Thêm vào mảng
+        displayProducts(); // Cập nhật lại danh sách
+        input.value = "";
+    }
+
+    function editProduct(index) {
+        let newName = prompt("Nhập tên mới:", products[index]);
+        if (newName !== null && newName.trim() !== "") {
+            products[index] = newName.trim();
+            displayProducts(); // Cập nhật lại danh sách
+        }
+    }
+
+    function deleteProduct(index) {
+        products.splice(index, 1); // Xóa phần tử khỏi mảng
+        displayProducts(); // Cập nhật lại danh sách
+    }
+
+    // Hiển thị sản phẩm ban đầu
+    displayProducts();
+
+</script>
+</body>
+</html>
