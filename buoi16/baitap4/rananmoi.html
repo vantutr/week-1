@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            background-color: #000;
+        }
+        #score {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="score">Score: 0</div>
+<canvas id="gameCanvas" width="400" height="400"></canvas>
+<script>
+    class SnakeGame {
+        constructor(canvasId, scoreId) {
+            this.canvas = document.getElementById(canvasId);
+            this.ctx = this.canvas.getContext("2d");
+            this.scoreDisplay = document.getElementById(scoreId);
+
+            this.box = 20;
+            this.snake = [{ x: 10 * this.box, y: 10 * this.box }];
+            this.direction = "RIGHT";
+            this.food = this.randomFood();
+            this.score = 0;
+            this.gameInterval = null;
+
+            document.addEventListener("keydown", (e) => this.changeDirection(e));
+            this.startGame();
+        }
+
+        randomFood() {
+            return {
+                x: Math.floor(Math.random() * 20) * this.box,
+                y: Math.floor(Math.random() * 20) * this.box
+            };
+        }
+
+        changeDirection(event) {
+            if (event.key === "ArrowUp" && this.direction !== "DOWN") this.direction = "UP";
+            else if (event.key === "ArrowDown" && this.direction !== "UP") this.direction = "DOWN";
+            else if (event.key === "ArrowLeft" && this.direction !== "RIGHT") this.direction = "LEFT";
+            else if (event.key === "ArrowRight" && this.direction !== "LEFT") this.direction = "RIGHT";
+        }
+
+        draw() {
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            // Vẽ rắn
+            this.ctx.fillStyle = "lime";
+            this.snake.forEach(segment => {
+                this.ctx.fillRect(segment.x, segment.y, this.box, this.box);
+            });
+
+            // Vẽ thức ăn
+            this.ctx.fillStyle = "red";
+            this.ctx.fillRect(this.food.x, this.food.y, this.box, this.box);
+
+            let head = { x: this.snake[0].x, y: this.snake[0].y };
+
+            if (this.direction === "UP") head.y -= this.box;
+            else if (this.direction === "DOWN") head.y += this.box;
+            else if (this.direction === "LEFT") head.x -= this.box;
+            else if (this.direction === "RIGHT") head.x += this.box;
+
+            // Kiểm tra ăn thức ăn
+            if (head.x === this.food.x && head.y === this.food.y) {
+                this.food = this.randomFood();
+                this.score += 10;
+                this.scoreDisplay.textContent = "Score: " + this.score;
+            } else {
+                this.snake.pop();
+            }
+
+            // Kiểm tra va chạm
+            if (head.x < 0 || head.x >= this.canvas.width || head.y < 0 || head.y >= this.canvas.height ||
+                this.snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                clearInterval(this.gameInterval);
+                alert("Game Over. Your Score: " + this.score);
+                return;
+            }
+
+            this.snake.unshift(head);
+        }
+
+        startGame() {
+            this.gameInterval = setInterval(() => this.draw(), 100);
+        }
+    }
+
+    // Khởi tạo game
+    new SnakeGame("gameCanvas", "score");
+
+</script>
+</body>
+</html>

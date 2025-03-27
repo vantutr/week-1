@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  let MyDate = function(day, month, year) {
+    if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
+      this.day = day;
+      this.month = month;
+      this.year = year;
+    } else {
+      return "Thông tin nhập vào không hợp lệ";
+    }
+
+    this.getDay = function() {
+      return this.day;
+    }
+    this.getMonth = function() {
+      return this.month;
+    }
+    this.getYear = function() {
+      return this.year;
+    }
+
+    this.setDay = function(day) {
+      this.day = day;
+    }
+    this.setMonth = function(month) {
+      this.month = month;
+    }
+    this.setYear = function(year) {
+      this.year = year;
+    }
+    // Phương thức setDate để đặt lại ngày, tháng, năm
+    this.setDate = function(day, month, year) {
+      if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
+      this.day = day;
+      this.month = month;
+      this.year = year;
+    } else {
+        return "Thông tin nhập vào không hợp lệ";
+      }
+      }
+
+    this.toString = function() {
+      let formattedDay = this.day < 10 ? "0" + this.day : this.day;
+      let formattedMonth = this.month < 10 ? "0" + this.month : this.month;
+      return formattedDay + "/" + formattedMonth + "/" + this.year;
+    }
+  };
+  // Tạo đối tượng MyDate
+  let date = new MyDate(2, 2, 2007);
+
+  // Sử dụng setDate để cập nhật giá trị
+  date.setDate(8, 2, 2019);
+
+  // Hiển thị kết quả
+  alert(date.toString()); // Kết quả: "10/10/2019"
+</script>

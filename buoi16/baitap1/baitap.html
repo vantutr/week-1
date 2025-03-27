@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="200" height="100"></canvas>
+</body>
+</html>
+<script>
+    // khai bao lop
+    class HinhChuNhat {
+        // thuoc tinh
+        height;
+        width;
+        constructor(width,height) {
+            this.height = height;
+            this.width = width;
+        }
+
+//     hanh vi
+        tinhDienTich(){
+            return this.width*this.height;
+        }
+        tinhChuVi(){
+            return (this.width+this.height)*2;
+        }
+    }
+    //khoi tao doi tuong: gan gia tri cho luc khai bao
+    let dai = 200;
+    let rong = 170;
+    let result = new HinhChuNhat(dai, rong);
+    // truy cap thuoc tinh va phuong thuc cua doi tuong
+    // <ten doi tuong>.<ten phuong thuc()>
+    console.log("dien tich hinh chu nhat "+ result.tinhDienTich());
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.fillStyle = "red";
+    ctx.fillRect(10,10,dai,rong);
+</script>

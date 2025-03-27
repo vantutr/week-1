@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Lái Xe</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        #gameContainer {
+            position: relative;
+            width: 400px;
+            height: 600px;
+            margin: auto;
+            overflow: hidden;
+            border: 2px solid white;
+            background: url("road.jpg");
+            background-size: 100% auto;
+            background-position: center top; /* Căn giữa ảnh theo chiều ngang, bắt đầu từ trên cùng */
+            background-repeat: repeat-y;
+            animation: none;
+            /*animation: roadmove 1s infinite linear;*/
+        }
+        @keyframes roadmove {
+            0% { background-position: 0 0; }  /* Ảnh nền bắt đầu ở vị trí (0,0) */
+            100% { background-position: 0 100%; }  /* Ảnh nền di chuyển xuống (0,100vh) */
+        }
+        .car-image {
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            object-fit: contain;
+        }
+        .obstacle-image {
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            object-fit: contain;
+        }
+        #start {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Game Lái Xe</h1>
+<p>Score: <span id="score">0</span></p>
+<button id="start">Bắt Đầu</button>
+<div id="gameContainer">
+    <img id="car" class="car-image" src="car1.png">
+</div>
+
+<script>
+    class CarDodgeGame {
+        constructor() {
+            this.gameContainer = document.getElementById("gameContainer");
+            this.startButton = document.getElementById("start");
+            this.car = document.getElementById("car");
+            this.scoreElement = document.getElementById("score");
+
+            this.score = 0;
+            this.carX = 0;
+            this.obstacles = [];
+            this.gameSpeed = 1;
+            this.keys = {};
+            this.gameRunning = false;
+            this.animationFrame = null;
+
+            this.initEventListeners();
+        }
+
+        // Khởi tạo lắng nghe sự kiện
+        initEventListeners() {
+            document.addEventListener("keydown", (e) => this.keys[e.key] = true);
+            document.addEventListener("keyup", (e) => this.keys[e.key] = false);
+            this.startButton.addEventListener("click", () => this.startGame());
+        }
+
+        // Hàm bắt đầu game
+        startGame() {
+            if (this.gameRunning) return;
+            this.gameRunning = true;
+            this.startButton.style.display = "none";
+            this.gameContainer.style.animation = 'roadmove 1s infinite linear';
+            this.score = 0;
+            this.scoreElement.innerText = this.score;
+            this.carX = 0;
+            this.car.style.transform = `translateX(-50%)`;
+            this.obstacles.forEach(obs => obs.remove());
+            this.obstacles = [];
+            this.update();
+        }
+
+        // Cập nhật trạng thái game
+        update() {
+            if (!this.gameRunning) return;
+
+            this.moveCar();
+            this.spawnObstacles();
+            this.moveObstacles();
+
+            this.animationFrame = requestAnimationFrame(() => this.update());
+        }
+
+        // Điều khiển xe
+        moveCar() {
+            if (this.keys["ArrowLeft"] && this.carX > -this.gameContainer.clientWidth / 2 + 25) this.carX -= 2;
+            if (this.keys["ArrowRight"] && this.carX < this.gameContainer.clientWidth / 2 - 25) this.carX += 2;
+            this.car.style.transform = `translateX(-50%) translateX(${this.carX}px)`;
+        }
+
+        // Tạo chướng ngại vật
+        spawnObstacles() {
+            if (Math.random() < 0.005) {
+                let obs = document.createElement("img");
+                obs.src = "car2.png";
+                obs.className = "obstacle-image";
+                obs.style.left = Math.random() * (this.gameContainer.clientWidth - 60) + "px";
+                obs.style.top = "0px";
+                this.gameContainer.appendChild(obs);
+                this.obstacles.push(obs);
+            }
+        }
+
+        // Di chuyển chướng ngại vật
+        moveObstacles() {
+            for (let i = this.obstacles.length - 1; i >= 0; i--) {
+                let obs = this.obstacles[i];
+                obs.style.top = (parseInt(obs.style.top) + this.gameSpeed) + "px";
+
+                if (parseInt(obs.style.top) > this.gameContainer.clientHeight) {
+                    obs.remove();
+                    this.obstacles.splice(i, 1);
+                    this.score += 10;
+                    this.scoreElement.innerText = this.score;
+                }
+
+                if (this.checkCollision(this.car, obs)) {
+                    this.gameOver();
+                    return;
+                }
+            }
+        }
+
+        // Kiểm tra va chạm
+        checkCollision(car, obs) {
+            let carRect = car.getBoundingClientRect();
+            let obsRect = obs.getBoundingClientRect();
+            return carRect.left < obsRect.right &&
+                carRect.right > obsRect.left &&
+                carRect.top < obsRect.bottom &&
+                carRect.bottom > obsRect.top;
+        }
+
+        // Xử lý khi game over
+        gameOver() {
+            this.gameRunning = false;
+            alert("Trò chơi kết thúc! Bạn đạt: " + this.score);
+            cancelAnimationFrame(this.animationFrame);
+
+            this.startButton.innerText = "Kết Thúc";
+            this.startButton.style.backgroundColor = "#dc3545";
+            this.startButton.style.display = "block";
+            this.gameContainer.style.animation = 'none';
+        }
+    }
+
+    // Khởi tạo trò chơi
+    const game = new CarDodgeGame();
+</script>
+
+</body>
+</html>

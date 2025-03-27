@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+    class Temperature {
+        nhietdo;
+        constructor(nhietdo) {
+            this.nhietdo = nhietdo;
+        }
+        DoCsangF() {
+            return this.nhietdo * 9 / 5 + 32;
+        }
+        DoCsangK() {
+            return this.nhietdo + 273.15;
+        }
+    }
+    let temperature = new Temperature(25);
+    document.write("Độ C sang độ F: " + temperature.DoCsangF() + "<br>");
+    document.write("Độ C sang độ K: " + temperature.DoCsangK());
+</script>

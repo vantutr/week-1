@@ -1,10 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+        }
+        .formdangnhap {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 320px;
+        }
+        .formdangnhap h2 {
+            margin-bottom: 15px;
+        }
+        .tendangnhap input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .matkhau{
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin-top: 15px;
+        }
+        .matkhau input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .matkhau i{
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+        }
+        .formdangnhap button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #d8481c;
+            color: white;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-$END$
+    <div class="formdangnhap">
+        <h2> Đăng Nhập</h2>
+        <div class="tendangnhap">
+        <input type="text" id="name" placeholder="Nhập tên đăng nhập">
+        </div>
+        <div class="matkhau">
+        <input type="password" id="pass" placeholder="Nhập password">
+        <i onclick="showpassword()" class="fa-solid fa-eye"></i>
+        </div>
+        <button onclick="dangnhap()" value="Đăng Nhập">Đăng Nhập</button>
+    </div>
+
 </body>
 </html>
+<script>
+    function dangnhap() {
+    usename = document.getElementById("name").value;
+    password = document.getElementById("pass").value;
+
+    if (usename == 'Admin') {
+        if (password == '123456') {
+            alert("Đăng nhập thành công");
+        } else {
+            alert("Password không đúng");
+        }
+    }else {
+        alert("Tên đăng nhập không tồn tại");
+    }
+    }
+    function showpassword() {
+        hienpassword = document.getElementById("pass");
+        if (hienpassword.type === "password") {
+            hienpassword.type = "text";
+        } else {
+            hienpassword.type = "password";
+        }
+    }
+</script>

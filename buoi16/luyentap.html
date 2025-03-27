@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
 </body>
 </html>
+<script>
+    let person = {
+        name: { first: 'Bob', last: 'Smith' },
+        age: 32,
+        interests: ['music', 'skiing'],
+        greeting: function() {
+            alert('Hi! I\'m ' + this.name.first + '.');
+        }
+    };
+    person.age = 45;
+    person.name.last = 'Johnson';
+    console.log(person.name.first);
+    console.log(person.interests);
+    person.greeting();
+    console.log(person['age']);
+    console.log(person['name']['last']);
+</script>

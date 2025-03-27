@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Moving Circles</title>
+  <style>
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+<canvas id="myCanvas"></canvas>
+
+<script>
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  function Circle(x, y, radius, dx, dy, color) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.dx = dx; // Tốc độ theo trục x
+    this.dy = dy; // Tốc độ theo trục y
+    this.color = color;
+
+    this.draw = function() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    };
+
+    this.update = function() {
+      // Nếu chạm tường, đổi hướng di chuyển
+      if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+        this.dx = -this.dx;
+      }
+      if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+        this.dy = -this.dy;
+      }
+
+      // Cập nhật vị trí
+      this.x += this.dx;
+      this.y += this.dy;
+
+      // Vẽ lại hình tròn
+      this.draw();
+    };
+  }
+
+  function getRandomHex() {
+    return Math.floor(Math.random() * 255);
+  }
+
+  function getRandomColor() {
+    var red = getRandomHex();
+    var green = getRandomHex();
+    var blue = getRandomHex();
+    return `rgb(${red}, ${green}, ${blue})`;
+  }
+
+  var circles = [];
+
+  function createCircles() {
+    for (var i = 0; i < 30; i++) {
+      var radius = Math.floor(Math.random() * 50) + 10;
+      var x = Math.random() * (canvas.width - radius * 2) + radius;
+      var y = Math.random() * (canvas.height - radius * 2) + radius;
+      var dx = (Math.random() - 0.5) * 4; // Tốc độ ngẫu nhiên
+      var dy = (Math.random() - 0.5) * 4;
+      var color = getRandomColor();
+      circles.push(new Circle(x, y, radius, dx, dy, color));
+    }
+  }
+
+  function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (var i = 0; i < circles.length; i++) {
+      circles[i].update();
+    }
+  }
+
+  createCircles();
+  animate();
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body{
+      display: flex;
+    }
+    table{
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <table border="1px">
+    <tr>
+      <th colspan="2">Iphone</th>
+    </tr>
+    <tr>
+      <td>Tình trạng điện thoại</td>
+      <td>
+        <p id="checkOnOff1">Điện thoại đang tắt</p><button onclick="On()">Bật</button><button onclick="Off()">Tắt</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Soạn tin nhắn</td>
+      <td>
+        <input type="text" id="iphone" placeholder="Soạn tin nhắn"><button onclick="sendNokia()">Send</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Hộp thư đến</td>
+      <td id="inboxIphone"></td>
+    </tr>
+    <tr>
+      <td>Tin nhắn đã gửi</td>
+      <td id="viewsentIphone"></td>
+    </tr>
+    <tr>
+      <td>Dung lượng pin còn lại</td>
+      <td id="batteryIphone">100%</td>
+    </tr>
+
+  </table>
+
+
+  <table border="1px">
+    <tr>
+      <th colspan="2">Nokia</th>
+    </tr>
+    <tr>
+      <td>Tình trạng điện thoại</td>
+      <td>
+        <p id="checkOnOff2">Điện thoại đang tắt</p><button onclick="On1()">Bật</button><button onclick="Off1()">Tắt</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Soạn tin nhắn</td>
+      <td>
+        <input type="text" id="nokia" placeholder="Soạn tin nhắn"><button onclick="sendIphone()">Send</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Hộp thư đến</td>
+      <td id="inboxNokia"></td>
+    </tr>
+    <tr>
+      <td>Tin nhắn đã gửi</td>
+      <td id="viewsentNokia"></td>
+    </tr>
+    <tr>
+      <td>Dung lượng pin còn lại</td>
+      <td id="batteryNokia">100%</td>
+    </tr>
+
+  </table>
+  <script src="mobile.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
