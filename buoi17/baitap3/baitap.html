@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--  <script src="light.js"></script>-->
+<!--  <script src="switch.js"></script>-->
+<!--  <script src="main.js"></script>-->
+</body>
+</html>
+<script>
+  class LightBulb {
+    constructor() {
+      this.status = false; // Mặc định đèn tắt
+    }
+
+    turnOn() {
+      this.status = true;
+      this.displayStatus();
+    }
+
+    turnOff() {
+      this.status = false;
+      this.displayStatus();
+    }
+
+    displayStatus() {
+      console.log(`💡 Bóng đèn đang ${this.status ? "BẬT" : "TẮT"}`);
+    }
+  }
+
+  class Switch {
+    constructor(lightBulb) {
+      this.lightBulb = lightBulb;
+      this.isOn = false; // Mặc định công tắc tắt
+    }
+
+    toggle() {
+      this.isOn = !this.isOn;
+      console.log(`🔘 Công tắc ${this.isOn ? "BẬT" : "TẮT"}`);
+
+      if (this.isOn) {
+        this.lightBulb.turnOn();
+      } else {
+        this.lightBulb.turnOff();
+      }
+    }
+  }
+
+  // Khởi tạo đối tượng
+  let myBulb = new LightBulb();
+  let mySwitch = new Switch(myBulb);
+
+  // Thực hiện bật/tắt công tắc 10 lần
+  for (let i = 0; i < 10; i++) {
+    mySwitch.toggle();
+  }
+
+</script>
