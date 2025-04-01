@@ -3,27 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-</head>
-<body>
+    <style>
+        :root {
+            --background: #80e6ff;
+            --grass: #63ab52;
+            --red: #FF025D;
+            --red-pressed: red;
+            --blue: #0BA7FF;
+            --blue-pressed: blue;
+            --white: #fff;
+            --white-pressed: #FBFF27;
+            --button-size: 79px;
+            --character-size: 128px;
+        }
 
-</body>
-</html>
-<script>
-    function birthdayCakeCandles(candles) {
-        let max = 0;
-        let count = 0;
+        * {
+            box-sizing:border-box;
+        }
 
-        for (let i = 0; i < candles.length; i++) {
-            if (candles[i] > max) {
-                max = candles[i];
-                count = 1;
-            } else if (candles[i] === max) {
-                count++;
+        html,
+        body {
+            background: var(--background);
+            overflow:hidden;
+            position:relative;
+            height: 100vh;
+            font-family: 'Roboto Mono';
+        }
+        .ground {
+            background: var(--grass);
+            position:absolute;
+            left:0;
+            right:0;
+            bottom:0;
+            height: 40vh;
+        }
+        .cloud {
+            width: 200px;
+            height: auto;
+            display:block;
+            position:absolute;
+        }
+
+        .cloud1 {
+            top: 23vh;
+            left: 10vw;
+        }
+        .cloud2 {
+            top: 8vh;
+            right: 23vw;
+        }
+        .music-note {
+            position: absolute;
+            width: 7vw;
+            left: 54vw;
+            top: 37vh;
+        }
+        .music-note path {
+            fill: #d9f1fb;
+        }
+
+        .dpad-container, .button-container {
+            position: fixed;
+            z-index: 2;
+            width: calc(var(--button-size) * 2.6);
+            height: calc(var(--button-size) * 2.6);
+        }
+        .button-container {
+            position: fixed;
+            right:0;
+        }
+
+        .button_text {
+            font-family: "Roboto Mono";
+            font-weight:bold;
+            font-size: 22px;
+        }
+
+        button {
+            position:relative;
+            cursor:pointer;
+        }
+        button.hitbox {
+            -webkit-appearance:none;
+            appearance:none;
+            border:0;
+            padding:0;
+            background: rgba(255,255,255,0);
+        }
+
+
+        button:focus {
+            outline:0;
+            /* We put the cue back using SVG paths */
+        }
+
+        button > svg {
+            position: absolute;
+            left:0;
+            top:0;
+            pointer-events: none;
+        }
+
+
+        .button-a, .button-b {
+            position:absolute;
+            left:20px;
+            top:20%;
+            height: 79px;
+            width: 79px;
+        }
+
+        .button-a svg {
+            fill: #c31c2f;
+        }
+        .button-b svg {
+            fill: #2f7ed6;
+        }
+
+        .button-b {
+            left:110px;
+            top:35%;
+        }
+
+        .button-a svg, .button-a circle {
+            stroke: var(--red);
+        }
+        .button-b svg, .button-b circle {
+            stroke: var(--blue);
+        }
+
+        .character {
+            background: url("https://assets.codepen.io/21542/TutorialWalkingVectorCharacterSheet.png") no-repeat no-repeat;
+            height: var(--character-size);
+            width: var(--character-size);
+            position: absolute;
+            left: calc(50vw - var(--character-size)/2);
+            top:56vh;
+        }
+        .character.walking {
+            animation: walkAnimation 0.4s steps(4) infinite;
+        }
+        .character.pushing {
+            animation: pushAnimation 0.6s ease-in-out;
+        }
+
+
+
+        @keyframes walkAnimation {
+            from {
+                background-position-x: 0%;
+            }
+            to {
+                background-position-x: calc( var(--character-size) * -4 );
             }
         }
 
-        console.log(count);
+        @keyframes pushAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            20% {
+                transform: translateY(40%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+
+
+    </style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js" integrity="sha512-L6Z/YtIPQ7eU3BProP34WGU5yIRk7tNHk7vaC2dB1Vy1atz6wl9mCkTPPZ2Rn1qPr+vY2mZ9odZLdGYuaBk7dQ==" crossorigin="anonymous"></script>
+
+
+<button class="play-music">Play music</button>
+<button class="stop-music">Stop music</button>
+
+
+<!-------------------- BUTTONS ----------------------------------->
+
+<div class="button-container">
+    <button class="hitbox button-a">
+        <svg width="79" height="79" viewBox="0 0 79 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="39.5" cy="39.5" r="36.5" stroke="white" stroke-width="6" />
+            <text class="button_text" x="33" y="47" fill="white">A</text>
+        </svg>
+    </button>
+    <button class="hitbox button-b">
+        <svg width="79" height="79" viewBox="0 0 79 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="39.5" cy="39.5" r="36.5" stroke="white" stroke-width="6" />
+            <text class="button_text" x="33" y="47" fill="white">B</text>
+        </svg>
+    </button>
+</div>
+
+
+<!-------------------- DEMO SCENE ----------------------------------->
+
+<svg class="cloud cloud1" viewBox="0 0 1116 428" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="448" cy="168" rx="448" ry="168" fill="white"/>
+    <ellipse cx="668" cy="260" rx="448" ry="168" fill="white"/>
+    <path d="M1066.28 313.732C1069.07 323.273 1008.16 349.474 930.237 372.252C852.312 395.031 786.88 405.761 784.091 396.219C781.302 386.677 845.261 380.754 923.186 357.976C1001.11 335.197 1063.49 304.19 1066.28 313.732Z" fill="#D2E6ED"/>
+    <path d="M597.282 211.732C600.071 221.273 539.162 247.474 461.237 270.252C383.312 293.031 317.88 303.761 315.091 294.219C312.302 284.677 376.261 278.754 454.186 255.976C532.11 233.197 594.493 202.19 597.282 211.732Z" fill="#D2E6ED"/>
+</svg>
+
+<svg class="cloud cloud2" viewBox="0 0 1116 428" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="448" cy="168" rx="448" ry="168" fill="white"/>
+    <ellipse cx="668" cy="260" rx="448" ry="168" fill="white"/>
+    <path d="M1066.28 313.732C1069.07 323.273 1008.16 349.474 930.237 372.252C852.312 395.031 786.88 405.761 784.091 396.219C781.302 386.677 845.261 380.754 923.186 357.976C1001.11 335.197 1063.49 304.19 1066.28 313.732Z" fill="#D2E6ED"/>
+    <path d="M597.282 211.732C600.071 221.273 539.162 247.474 461.237 270.252C383.312 293.031 317.88 303.761 315.091 294.219C312.302 284.677 376.261 278.754 454.186 255.976C532.11 233.197 594.493 202.19 597.282 211.732Z" fill="#D2E6ED"/>
+</svg>
+
+<svg class="music-note" viewBox="0 0 75 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15 6.23511L69.7865 0.106445L70.8395 9.5196L70 9.61351V43.2269L74.5266 56.1264L55.5213 62.7955L50.9082 49.6492L65 44.7043V10.1728L21 15.0949V43.0324L21.1488 42.9802L25.762 56.1265L5.46861 63.2476L0.855469 50.1013L16 44.787V15.1745L15 6.23511Z" fill="black"/>
+</svg>
+
+<div class="ground"></div>
+
+<div class="character">
+</div>
+</body>
+</html>
+<script>
+    var sfx = {
+        push: new Howl({
+            src: [
+                'https://assets.codepen.io/21542/howler-push.mp3',
+            ]
+        }),
+        boost: new Howl({
+            src: [
+                'https://assets.codepen.io/21542/howler-sfx-levelup.mp3'
+            ],
+            loop: false,
+            onend: function() {
+                console.log("Done playing sfx!")
+            }
+        })
     }
-    let a =[2,3,5,4,3,5,5];
-    birthdayCakeCandles(a);
+
+    var music = {
+        overworld: new Howl({
+            src: [
+                "https://assets.codepen.io/21542/howler-demo-bg-music.mp3"
+            ]
+        })
+    }
+
+
+    //Character class
+    class Character {
+        constructor(element) {
+            this.element = element;
+        }
+
+        push() {
+            if (this.element.classList.contains("pushing")) {
+                return;
+            }
+
+            sfx.push.play();
+            this.element.classList.add("pushing");
+            setTimeout(() => {
+                this.element.classList.remove("pushing");
+            }, 600)
+        }
+
+        boost() {
+            if (this.element.classList.contains("walking")) {
+                return;
+            }
+
+            sfx.boost.play();
+            this.element.classList.add("walking");
+            setTimeout(() => {
+                this.element.classList.remove("walking");
+            }, 1000)
+        }
+    }
+
+
+    //Init
+    (function() {
+        var player = new Character(document.querySelector(".character"));
+
+        document.querySelector(".button-a").addEventListener("click", () => {
+            player.push();
+        })
+        document.querySelector(".button-b").addEventListener("click", () => {
+            player.boost();
+        })
+
+        document.querySelector(".play-music").addEventListener("click", () => {
+            if (!music.overworld.playing()) {
+                music.overworld.play();
+            }
+        })
+        document.querySelector(".stop-music").addEventListener("click", () => {
+            music.overworld.pause();
+        })
+
+    })();
+
 </script>
